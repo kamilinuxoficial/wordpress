@@ -1,4 +1,5 @@
 version: '3'
+
 services:
   db:
     image: mysql
@@ -19,3 +20,11 @@ services:
       - ./wp_data:/var/www/html
       - ./apache2/ports.conf:/etc/apache2/ports.conf
       - ./apache2/000-default.conf:/etc/apache2/sites-available/000-default.conf
+    ports:
+      - "8000:8080"
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
